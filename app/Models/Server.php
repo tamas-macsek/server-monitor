@@ -22,11 +22,17 @@ class Server extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<User,$this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return HasMany<Metric,$this>
+     */
     public function metrics(): HasMany
     {
         return $this->hasMany(Metric::class);

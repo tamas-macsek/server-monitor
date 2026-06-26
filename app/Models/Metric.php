@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Server;
 use Override;
 
 #[Fillable(['server_id', 'cpu_usage', 'memory_usage', 'disk_usage', 'load_average', 'recorded_at'])]
@@ -18,6 +19,9 @@ class Metric extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Server, $this>
+     */
     public function server(): BelongsTo
     {
         return $this->belongsTo(Server::class);
