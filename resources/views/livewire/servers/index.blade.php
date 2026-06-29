@@ -22,11 +22,21 @@
                         <flux:badge :color="$server->is_active ? 'green' : 'red'" size="sm">{{ $server->is_active ? "Active" : "Inactive" }}</flux:badge>
                     </flux:table.cell>
                     <flux:table.cell class="flex gap-2">
+                        <flux:modal.trigger :name="'api-token-'.$server->id">
+                            <flux:button size="sm" icon="key">API Token</flux:button>
+                        </flux:modal.trigger>
                         <flux:button :href="route('server.edit', ['server' => $server])" size="sm" variant="primary">Edit</flux:button>
                         <flux:button size="sm" variant="danger" wire:click="delete({{ $server->id }})">Remove</flux:button>
                     </flux:table.cell>
 
                 </flux:table.row>
+
+                <flux:modal :name="'api-token-'.$server->id" class="md:w-96">
+                    <div class="space-y-6">
+                        <flux:heading size="lg">API Token</flux:heading>
+                        <flux:input :value="$server->api_token" readonly copyable />
+                    </div>
+                </flux:modal>
             @endforeach
         </flux:table.rows>
     </flux:table>
